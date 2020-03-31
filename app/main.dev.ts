@@ -139,4 +139,20 @@ ipcMain.on('StartBridge', (event, arg) => {
   event.returnValue = 'STATUS: Active - Redirecting to ' + String(arg);
 })
 
-require('./server.js')
+var express    = require("express");
+var morgan     = require("morgan");
+var appexpress        = express();
+
+var port = process.env.PORT || 8084;
+
+appexpress.use(morgan("dev"));
+appexpress.use(express.static(__dirname+'/web'));
+
+appexpress.get("/", function(req, res) {
+    res.sendFile('./index.html'); //index.html file of your angularjs application
+});
+
+// Start Server
+appexpress.listen(port, function () {
+    console.log( "Express server listening on port " + port);
+});
