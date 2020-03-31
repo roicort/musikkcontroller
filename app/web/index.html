@@ -1,0 +1,225 @@
+
+<script type="text/javascript" src="node_modules/osc-js/lib/osc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nexusui@2.0.13/dist/NexusUI.min.js"></script>
+
+<style type=text/css>
+.center {
+  margin: 0 auto;
+  width: 20%;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>musikkcontroller</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../dist/images/favicon.png">
+
+</head>
+<body>
+  <br>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <div class="section">
+    <div class="container">
+        <h2>musikkcontroller</h2>
+        <a id="send" class="button button">Try Connection</a>
+    </div>
+  </div>
+
+<br>
+
+  <div class="section">
+    <div class="container">
+      <div class="center"> 
+        <div id="slider1"></div>
+        <div id="slider2"></div>
+        <div id="slider3"></div>
+        <div id="slider4"></div>
+        <div id="slider5"></div>
+        <div id="slider6"></div>
+        <div id="slider7"></div>
+        <div id="slider8"></div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="section">
+    <div class="container">
+      <div class="center"> 
+        <div id="toggle1"></div>
+        <div id="toggle2"></div>
+        <div id="toggle3"></div>
+        <div id="toggle4"></div>
+        <div id="toggle5"></div>
+        <div id="toggle6"></div>
+        <div id="toggle7"></div>
+        <div id="toggle8"></div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="section get-help">
+    <div class="container">
+      <div class="container">
+        <div id="position1"></div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
+<script type="text/javascript">
+  adress = document.URL.replace("http","").replace(":8084","").replace("//","").replace("/", "").replace(":","")
+  console.log(adress)
+  const osc = new OSC()
+  osc.open({
+    host: adress,    // @param {string} Hostname of WebSocket server
+    port: 8080            // @param {number} Port of WebSocket server
+  }); 
+</script>
+
+<script>
+  
+  var sendvalue = function (path,value) {
+    var message = new OSC.Message(path, value);
+    osc.send(message);
+  };
+  
+  var slider1 = new Nexus.Slider('slider1')
+  var slider2 = new Nexus.Slider('slider2')
+  var slider3 = new Nexus.Slider('slider3')
+  var slider4 = new Nexus.Slider('slider4')
+  var slider5 = new Nexus.Slider('slider5')
+  var slider6 = new Nexus.Slider('slider6')
+  var slider7 = new Nexus.Slider('slider7')
+  var slider8 = new Nexus.Slider('slider8')
+  
+  var toggle1 = new Nexus.Toggle('toggle1')
+  var toggle2 = new Nexus.Toggle('toggle2')
+  var toggle3 = new Nexus.Toggle('toggle3')
+  var toggle4 = new Nexus.Toggle('toggle4')
+  var toggle5 = new Nexus.Toggle('toggle5')
+  var toggle6 = new Nexus.Toggle('toggle6')
+  var toggle7 = new Nexus.Toggle('toggle7')
+  var toggle8 = new Nexus.Toggle('toggle8')
+
+  var position1 = new Nexus.Position('position1')
+  
+</script>
+  
+
+<script>
+
+  function processtoggle(v){
+    if (v === true) {
+        v = 1
+      } else { 
+        v = 0
+      }
+    return v
+  }
+
+  slider1.on('change',function(v) {
+    sendvalue("/slider1",v);
+        })
+
+    slider2.on('change',function(v) {
+    sendvalue("/slider2",v);
+        })
+
+    slider3.on('change',function(v) {
+    sendvalue("/slider3",v);
+        })
+
+    slider4.on('change',function(v) {
+    sendvalue("/slider4",v);
+        })  
+
+    slider5.on('change',function(v) {
+    sendvalue("/slider5",v);
+        })  
+    slider6.on('change',function(v) {
+    sendvalue("/slider6",v);
+        })  
+    slider7.on('change',function(v) {
+    sendvalue("/slider7",v);
+        })  
+    slider8.on('change',function(v) {
+    sendvalue("/slider8",v);
+        })
+
+    toggle1.on('change',function(v) {
+      sendvalue("/toggle1",processtoggle(v));
+        })
+    toggle2.on('change',function(v) {
+      sendvalue("/toggle2",processtoggle(v));
+        })
+    toggle3.on('change',function(v) {
+      sendvalue("/toggle3",processtoggle(v));
+        })
+    toggle4.on('change',function(v) {
+      sendvalue("/toggle4",processtoggle(v));
+        })
+    toggle5.on('change',function(v) {
+      sendvalue("/toggle5",processtoggle(v));
+        })
+    toggle6.on('change',function(v) {
+      sendvalue("/toggle16",processtoggle(v));
+        })
+    toggle7.on('change',function(v) {
+      sendvalue("/toggle7",processtoggle(v));
+        })
+    toggle8.on('change',function(v) {
+      sendvalue("/toggle8",processtoggle(v));
+        })
+
+    position1.on('change',function(v) {
+    sendvalue("/positionX",v.x);
+    sendvalue("/positionY",v.y);
+    });
+    document.getElementById('send').addEventListener('click', () => {
+      var message = new OSC.Message('/test/', "Connected");
+      osc.send(message);
+    });
+</script>
