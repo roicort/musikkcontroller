@@ -35,7 +35,7 @@ console.log(ipAddress)
 export default function Counter() {
   function onclick(ipAddres){
     const { BrowserWindow } = require('electron').remote
-    let win = new BrowserWindow({ width: 800, height: 600 })
+    let win = new BrowserWindow({ width: 800, height: 455, titleBarStyle: 'hidden'})
     win.loadURL(ipAddress)
   }
   return (

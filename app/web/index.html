@@ -1,6 +1,6 @@
 
 <script type="text/javascript" src="node_modules/osc-js/lib/osc.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/nexusui@2.0.13/dist/NexusUI.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nexusui@2.0.13/dist/NexusUI.js"></script>
 
 <style type=text/css>
 .center {
@@ -60,7 +60,6 @@
 
   <div class="section">
     <div class="container">
-      <div class="center"> 
         <div id="slider1"></div>
         <div id="slider2"></div>
         <div id="slider3"></div>
@@ -69,7 +68,6 @@
         <div id="slider6"></div>
         <div id="slider7"></div>
         <div id="slider8"></div>
-      </div>
     </div>
   </div>
 
@@ -77,7 +75,6 @@
 
   <div class="section">
     <div class="container">
-      <div class="center"> 
         <div id="toggle1"></div>
         <div id="toggle2"></div>
         <div id="toggle3"></div>
@@ -86,16 +83,15 @@
         <div id="toggle6"></div>
         <div id="toggle7"></div>
         <div id="toggle8"></div>
-      </div>
     </div>
   </div>
 
   <br>
 
-  <div class="section get-help">
+  <div class="section">
     <div class="container">
       <div class="container">
-        <div id="position1"></div>
+        <div id="pos1"></div>
       </div>
     </div>
   </div>
@@ -134,17 +130,20 @@
   var slider6 = new Nexus.Slider('slider6')
   var slider7 = new Nexus.Slider('slider7')
   var slider8 = new Nexus.Slider('slider8')
-  
-  var toggle1 = new Nexus.Toggle('toggle1')
-  var toggle2 = new Nexus.Toggle('toggle2')
-  var toggle3 = new Nexus.Toggle('toggle3')
-  var toggle4 = new Nexus.Toggle('toggle4')
-  var toggle5 = new Nexus.Toggle('toggle5')
-  var toggle6 = new Nexus.Toggle('toggle6')
-  var toggle7 = new Nexus.Toggle('toggle7')
-  var toggle8 = new Nexus.Toggle('toggle8')
 
-  var position1 = new Nexus.Position('position1')
+  var toggleXsize = 50
+  var toggleYsize = 35
+  
+  var toggle1 = new Nexus.Toggle('toggle1',{'size': [toggleXsize,toggleYsize]})
+  var toggle2 = new Nexus.Toggle('toggle2',{'size': [toggleXsize,toggleYsize]})
+  var toggle3 = new Nexus.Toggle('toggle3',{'size': [toggleXsize,toggleYsize]})
+  var toggle4 = new Nexus.Toggle('toggle4',{'size': [toggleXsize,toggleYsize]})
+  var toggle5 = new Nexus.Toggle('toggle5',{'size': [toggleXsize,toggleYsize]})
+  var toggle6 = new Nexus.Toggle('toggle6',{'size': [toggleXsize,toggleYsize]})
+  var toggle7 = new Nexus.Toggle('toggle7',{'size': [toggleXsize,toggleYsize]})
+  var toggle8 = new Nexus.Toggle('toggle8',{'size': [toggleXsize,toggleYsize]})
+
+  var position1 = new Nexus.Position('pos1')
   
 </script>
   
@@ -215,8 +214,8 @@
         })
 
     position1.on('change',function(v) {
-    sendvalue("/positionX",v.x);
-    sendvalue("/positionY",v.y);
+      sendvalue("/positionX",v.x);
+      sendvalue("/positionY",v.y);
     });
     document.getElementById('send').addEventListener('click', () => {
       var message = new OSC.Message('/test/', "Connected");
