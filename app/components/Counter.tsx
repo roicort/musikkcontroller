@@ -41,7 +41,7 @@ export default function Counter() {
   return (
     <div className="App">
     <Layout>
-      <Footer>OSController</Footer>
+      <Footer>musikkcontroller</Footer>
       <Layout>
         <Content>
            <Row>
