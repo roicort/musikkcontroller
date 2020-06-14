@@ -2,10 +2,9 @@
 <script type="text/javascript" src="node_modules/osc-js/lib/osc.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/nexusui@2.0.13/dist/NexusUI.js"></script>
 
-<style type=text/css>
-.center {
-  margin: 0 auto;
-  width: 20%;
+<style>
+[nexus-ui] {
+  width: 100%;
 }
 </style>
 
@@ -59,6 +58,7 @@
 <br>
 
   <div class="section">
+    <h4>Sliders</h4>
     <div class="container">
         <div id="slider1"></div>
         <div id="slider2"></div>
@@ -74,6 +74,7 @@
   <br>
 
   <div class="section">
+    <h4>Toggles</h4>
     <div class="container">
         <div id="toggle1"></div>
         <div id="toggle2"></div>
@@ -89,6 +90,7 @@
   <br>
 
   <div class="section">
+    <h4>Position 2D</h4>
     <div class="container">
       <div class="container">
         <div id="pos1"></div>
@@ -97,6 +99,18 @@
   </div>
 
   <br>
+
+  <div class="section">
+    <h4>Tilt</h4>
+    <div class="container">
+      <div class="container">
+        <span id="tilt"></span>
+        <div id="debugX">~</div>
+        <div id="debugY">~</div>
+        <div id="debugZ">~</div>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -134,16 +148,18 @@
   var toggleXsize = 50
   var toggleYsize = 35
   
-  var toggle1 = new Nexus.Toggle('toggle1',{'size': [toggleXsize,toggleYsize]})
-  var toggle2 = new Nexus.Toggle('toggle2',{'size': [toggleXsize,toggleYsize]})
-  var toggle3 = new Nexus.Toggle('toggle3',{'size': [toggleXsize,toggleYsize]})
-  var toggle4 = new Nexus.Toggle('toggle4',{'size': [toggleXsize,toggleYsize]})
-  var toggle5 = new Nexus.Toggle('toggle5',{'size': [toggleXsize,toggleYsize]})
-  var toggle6 = new Nexus.Toggle('toggle6',{'size': [toggleXsize,toggleYsize]})
-  var toggle7 = new Nexus.Toggle('toggle7',{'size': [toggleXsize,toggleYsize]})
-  var toggle8 = new Nexus.Toggle('toggle8',{'size': [toggleXsize,toggleYsize]})
+  var toggle1 = new Nexus.Toggle('toggle1')
+  var toggle2 = new Nexus.Toggle('toggle2')
+  var toggle3 = new Nexus.Toggle('toggle3')
+  var toggle4 = new Nexus.Toggle('toggle4')
+  var toggle5 = new Nexus.Toggle('toggle5')
+  var toggle6 = new Nexus.Toggle('toggle6')
+  var toggle7 = new Nexus.Toggle('toggle7')
+  var toggle8 = new Nexus.Toggle('toggle8')
 
   var position1 = new Nexus.Position('pos1')
+
+  var piano = new Nexus.Piano('piano')
   
 </script>
   
@@ -212,11 +228,28 @@
     toggle8.on('change',function(v) {
       sendvalue("/toggle8",processtoggle(v));
         })
-
     position1.on('change',function(v) {
       sendvalue("/positionX",v.x);
       sendvalue("/positionY",v.y);
     });
+
+    tilt = new Nexus.Tilt('tilt');
+    debuxX = document.getElementById("debugX");
+    debuxY = document.getElementById("debugY");
+    tilt.on('change',function(v) {
+      if (v) {
+        if (v.x) {
+          debugX.innerHTML = ~~(v.x * 1000);
+        }
+        if (v.y) {
+          debugY.innerHTML = ~~(v.y * 1000);
+        }
+        if (v.z) {
+          debugZ.innerHTML = ~~(v.z * 1000);
+        }
+      }
+    })
+
     document.getElementById('send').addEventListener('click', () => {
       var message = new OSC.Message('/test/', "Connected");
       osc.send(message);
