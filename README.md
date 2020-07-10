@@ -18,7 +18,7 @@ Internamente musikkcontroller crea un servidor para la interfaz web, despúes cr
 <a href="https://www.cenart.gob.mx"><img src="img/cenart.png"></a>
 <a href="https://fonca.cultura.gob.mx"><img src="img/fonca.png"></a>
 
-### Atribuciones
+### Attributions
 
 * [Electron](https://www.electronjs.org)
 * [AntDesign](https://github.com/ant-design/ant-design)
