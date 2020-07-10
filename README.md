@@ -20,8 +20,8 @@ Internamente musikkcontroller crea un servidor para la interfaz web, despúes cr
 
 ### Atribuciones
 
-* Electron
-* [AntD]AntDesign(https://github.com/ant-design/ant-design)
-* osc-js - MIT License Copyright (c) 2016 adzialocha (Andreas Dzialocha) 
-* NexusUI
-* Express
+* [Electron](https://www.electronjs.org)
+* [AntDesign](https://github.com/ant-design/ant-design)
+* [osc-js](https://github.com/adzialocha/osc-js)
+* [NexusUI](https://github.com/nexus-js/ui/)
+* [Express](http://expressjs.com)
