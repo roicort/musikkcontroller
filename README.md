@@ -1,6 +1,6 @@
 # musikkcontroller
 
-Para el paper "The use of an interactive music system as an aid for exploring sound in music education in a rural area". (Mario Alberto Duarte, Emma Wilde, Rodrigo Cortez, Jorge Rodrigo Sigal) à revista Revista Música, Universidade de São Paulo. Escola de Comunicações e Artes.
+Para el paper "The use of an interactive music system as an aid for exploring sound in music education in a rural area". [Aceito, en Revisión] (Mario Alberto Duarte, Emma Wilde, Rodrigo Cortez, Jorge Rodrigo Sigal) à revista Revista Música, Universidade de São Paulo. Escola de Comunicações e Artes.
 
 ![Build Status](https://travis-ci.org/dwyl/esta.svg?branch=master)
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
